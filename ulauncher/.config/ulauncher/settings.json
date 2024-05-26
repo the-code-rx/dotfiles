@@ -1,0 +1,14 @@
+{
+    "arrow-key-aliases": "hjkl",
+    "clear-previous-query": true,
+    "disable-desktop-filters": true,
+    "enable-application-mode": true,
+    "grab-mouse-pointer": false,
+    "hotkey-show-app": "<Shift>space",
+    "jump-keys": "1234567890abcdefghijklmnopqrstuvwxyz",
+    "max-recent-apps": 0,
+    "raise-if-started": true,
+    "render-on-screen": "mouse-pointer-monitor",
+    "show-indicator-icon": true,
+    "theme-name": "libadwaita-dark"
+}

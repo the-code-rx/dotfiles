@@ -1,0 +1,44 @@
+{
+    "com.github.seofernando25.ulauncher-gpt": {
+        "id": "com.github.seofernando25.ulauncher-gpt",
+        "url": "https://github.com/SeoFernando25/ulauncher-gpt",
+        "updated_at": "2024-01-03T11:09:36.018789",
+        "last_commit": "2d51ff40fcbd501e64034f3c7be1cd35abc47d6b",
+        "last_commit_time": "2023-04-14T22:57:18"
+    },
+    "com.github.mepowerleo10.ulauncher-dict-en": {
+        "id": "com.github.mepowerleo10.ulauncher-dict-en",
+        "url": "https://github.com/mepowerleo10/ulauncher-dict-en",
+        "updated_at": "2024-01-03T11:42:15.927318",
+        "last_commit": "78babcd05dff825a580a7192fc14ee73775784f2",
+        "last_commit_time": "2023-04-03T09:26:35"
+    },
+    "com.github.mastdiekin.ulauncher-pypi-search": {
+        "id": "com.github.mastdiekin.ulauncher-pypi-search",
+        "url": "https://github.com/mastdiekin/ulauncher-pypi-search",
+        "updated_at": "2024-01-03T11:50:38.931465",
+        "last_commit": "3527a6c21b212ba2dac83824d107f1cc15a29971",
+        "last_commit_time": "2022-01-01T02:42:56"
+    },
+    "com.github.rootwork.ulauncher-symbol": {
+        "id": "com.github.rootwork.ulauncher-symbol",
+        "url": "https://github.com/rootwork/ulauncher-symbol.git",
+        "updated_at": "2024-01-03T11:55:49.940873",
+        "last_commit": "c5d7ab5c94c1b418cb1f8a9161be169a29c65658",
+        "last_commit_time": "2022-02-24T01:17:09"
+    },
+    "com.github.fisadev.ulauncher-better-file-browser": {
+        "id": "com.github.fisadev.ulauncher-better-file-browser",
+        "url": "https://github.com/fisadev/ulauncher-better-file-browser",
+        "updated_at": "2024-01-05T09:23:55.733853",
+        "last_commit": "8ec8a0dda09e172de62051cd1f251816ce4af368",
+        "last_commit_time": "2019-09-06T19:20:09"
+    },
+    "com.github.jonathanvisser.ulauncher-thesaurus": {
+        "id": "com.github.jonathanvisser.ulauncher-thesaurus",
+        "url": "https://github.com/jonathanvisser/ulauncher-thesaurus",
+        "updated_at": "2024-01-05T09:29:30.524140",
+        "last_commit": "fb5c9b7bc11a9529dab7aa410186d3a2911e6df3",
+        "last_commit_time": "2022-03-29T08:54:04"
+    }
+}
