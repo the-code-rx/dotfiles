@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+selected=`cat ~/.tmux-cht-languages ~/.tmux-cht-command | fzf`
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+read -p "Enter Query: " query
+
+if grep -qs "$selected" ~/.tmux-cht-languages; then
+    selected=`echo $selected | tr -d ' '`
+    query=`echo $query | tr -d ' '`
+    tmux neww -n "cheat.sh" bash -c "echo \"curl cht.sh/$selected/$query/\" & (curl -s cht.sh/$selected/$query & while [ : ]; do sleep 1; done) | less"
+else
+  tmux neww -n "cheat.sh" bash -c "(curl -s cht.sh/$selected~$query & while [ : ]; do sleep 1; done) | less"
+fi

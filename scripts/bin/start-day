@@ -1,0 +1,19 @@
+#!/bin/bash
+
+code --profile JoeyV &
+
+discord &
+
+slack &
+
+zoho-mail-desktop &
+
+gmail-desktop &
+
+google-chrome &
+
+google-chrome &
+
+obsidian &
+
+zeal &
