@@ -1,15 +1,33 @@
 #!/usr/bin/env bash
-selected=`cat ~/.tmux-cht-languages ~/.tmux-cht-command | fzf`
+#  A fzf cht.sh curl integration modified from ThePrimeagen https://github.com/ThePrimeagen/ThePrimeagen
+#
+# These files can be found in the .dotfilles/tmux directory on GitHub. Note this is not a comprehensive
+# list of avaliabe cht.sh languages or commands, you can adapt these files to suit your own needs.
+selected=$(cat ~/.tmux-cht-languages ~/.tmux-cht-command | fzf)
 if [[ -z $selected ]]; then
+    echo "No selection made. Exiting."
     exit 0
 fi
 
-read -p "Enter Query: " query
+read -p "Enter Your Query for $selected: " query
 
 if grep -qs "$selected" ~/.tmux-cht-languages; then
-    selected=`echo $selected | tr -d ' '`
-    query=`echo $query | tr -d ' '`
-    tmux neww -n "cheat.sh" bash -c "echo \"curl cht.sh/$selected/$query/\" & (curl -s cht.sh/$selected/$query & while [ : ]; do sleep 1; done) | less"
+    selected=$(echo $selected | tr -d ' ')
+    query=$(echo $query | tr -d ' ')
+    url="cht.sh/$selected/$query"
 else
-  tmux neww -n "cheat.sh" bash -c "(curl -s cht.sh/$selected~$query & while [ : ]; do sleep 1; done) | less"
+    url="cht.sh/$selected~$query"
 fi
+
+
+# Check curl response display and display response with batcat
+response=$(curl -s $url)
+if [[ -z $response ]]; then
+    echo "No response from curl. Exiting."
+    sleep 2 
+    exit 1
+else
+    tmux neww -n "cheat.sh" bash -c "curl -s $url & while [ : ]; do sleep 1; done | batcat"
+    fi
+
+

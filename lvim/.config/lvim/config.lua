@@ -83,8 +83,6 @@ lvim.plugins = {
   { "sirver/UltiSnips" },
   { "ncm2/ncm2-ultisnips" },
   { "lervag/vimtex" },
-  { 'junegunn/fzf' },
-  { "junegunn/fzf.vim" },
   { 'christoomey/vim-tmux-runner' },
   {
     'christoomey/vim-tmux-navigator',
@@ -143,7 +141,7 @@ vim.g.mkdp_page_title = '「${name}」'
 lvim.format_on_save.enabled = true
 
 -- Obsidan Settings
-vim.opt.conceallevel = 1
+vim.opt.conceallevel = 2
 
 -- Noice cmd popup configuration
 require("noice").setup({
