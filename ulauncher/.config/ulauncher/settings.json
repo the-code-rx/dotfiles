@@ -10,5 +10,5 @@
     "raise-if-started": true,
     "render-on-screen": "mouse-pointer-monitor",
     "show-indicator-icon": true,
-    "theme-name": "libadwaita-dark"
+    "theme-name": "adwaita-dark"
 }
