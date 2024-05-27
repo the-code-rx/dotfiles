@@ -3,24 +3,17 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
--- Settings
--- *
-local init_custom_options = function()
-  local custom_options = {
-    relativenumber = true, -- Set relative numbered lines
-    ignorecase = true,     -- Ignore case in search
-    smartcase = true,      -- Case-sensitive search when search term contains uppercase characters. Otherwise, case-sensitive search.  timeoutlen = 200, -- Time to wait for a mapped sequence to complete (in milliseconds)
-  }
+-- Load options.lua
+reload("user.options")
 
-  for k, v in pairs(custom_options) do
-    vim.opt[k] = v
-  end
-end
-init_custom_options()
+-- Load keybindings
+reload("user.keybindings")
 
+-- Pugins
 lvim.plugins = {
+  { "ftplugin/quarto.lua" },
   { "ThePrimeagen/vim-be-good" },
-  -- lazy.nvim
+  { "ThePrimeagen/harpoon" },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -30,7 +23,6 @@ lvim.plugins = {
       "MunifTanjim/nui.nvim",
     }
   },
-  { "nvim-focus/focus.nvim",   version = "*" },
   {
     "folke/twilight.nvim",
     opts = {
@@ -67,15 +59,22 @@ lvim.plugins = {
           --   path = "~/vaults/work",
           -- },
         },
+        templates = {
+          folder = "Templates",
+          date_format = "%Y-%m-%d",
+          time_format = "%H:%M",
+          -- A map for custom variables, the key should be the variable and the value a function
+          substitutions = {},
+        },
       })
     end,
   },
   { "/preservim/vim-pencil" },
-  { 'jupyter-vim/jupyter-vim' },
   { 'goerz/jupytext.vim' },
   { "devOpifex/r.nvim" },
+  { "quarto-dev/quarto-nvim" },
+  { "jmbuhr/otter.nvim" },
   { 'jpalardy/vim-slime' },
-  { 'hanschen/vim-ipython-cell' },
   { "jamespeapen/Nvim-R" },
   { "ncm2/ncm2" },
   { "roxma/nvim-yarp" },
@@ -101,47 +100,51 @@ lvim.plugins = {
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+    }
+  }
   -- Other plugins can be added here
 }
 
-
+-- LSP config
 require('mason-lspconfig').setup_handlers({
   function(server)
     require('lvim.lsp.manager').setup(server)
   end
 })
 
-require("focus").setup()
-
+-- Formatters
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { name = "black" },
   { name = "styler" },
 }
--- Enable pyright for Python auto-completion and linting
+
+-- Enable pyright for Python auto-completion and ruff for linting
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   { name = "ruff" },
 }
 lvim.lsp.installer.setup.ensure_installed = { "pyright" }
 
--- Markdown preview browser
-vim.g.mkdp_browser = "google-chrome"
-vim.g.mkdp_auto_start = 1
-vim.g.mkdp_open_ip = "127.0.0.1"
-vim.g.mkdp_echo_preview_url = 1
-vim.g.mkdp_refresh_slow = 1
-vim.g.mkdp_theme = "dark"
-vim.g.mkdp_theme = 1
-vim.g.mkdp_combine_preview_auto_refresh = 1
-vim.g.mkdp_page_title = '「${name}」'
-
-
 -- Auto format on save
 lvim.format_on_save.enabled = true
-
--- Obsidan Settings
-vim.opt.conceallevel = 2
 
 -- Noice cmd popup configuration
 require("noice").setup({
@@ -162,7 +165,3 @@ require("noice").setup({
     lsp_doc_border = false,       -- add a border to hover docs and signature help
   },
 })
-
-vim.g.slime_bracketed_paste = 1
-vim.g.slime_target = "tmux"
-vim.g.slime_default_config = { socket_name = "default", target_pane = "2" }
