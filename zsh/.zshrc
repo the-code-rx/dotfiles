@@ -1,15 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 # Path to your oh-my-zsh installation.
-# Path to your oh-my-zsh installation.
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
-# ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # ----------- conda initialize -------------------
 # !! Contents within this block are managed by 'conda init' !!
@@ -42,12 +34,13 @@ autoload -U compinit && compinit
 plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)
 
 
-# Lunar vim default editor
+# Settign Lunar vim as the default editor
 export EDITOR="lvim"
 
-
+# zsh-syntax-highlighting
 source /home/joeyv/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Setting the MANPATH
 if [ -z "${MANPATH}" ]; then
     MANPATH=$(manpath)
 fi
@@ -55,7 +48,7 @@ export MANPATH="/usr/local/texlive/2023/texmf-dist/doc/man:${MANPATH}"
 
 INFOPATH="/usr/local/texlive/2023/texmf-dist/doc/info/{INFOPATH}"
 
-# # LaTex
+# LaTex TexLive
 export PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
 
 
@@ -65,8 +58,6 @@ export TLDR_CACHE_DIR="$HOME/.tldr"
 # Navi
 export NAVI_CONFIG=~/.config/navi/config.yaml
 
-# ~/Opt executables
-export PATH=~/opt:$PATH
 
 # # fzf Key Bindings
 if [[ ! -f /usr/share/doc/fzf/examples/completion.zsh ]]; then
@@ -78,8 +69,12 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 export FZF_DEFAULT_OPTS="--multi --preview 'batcat --color=always --style=header,grid --line-range :500 {}'"
 
-#Latest Vim
-export PATH=$HOME/opt/nvim/bin:$PATH
+# Add all ~/opt sub-directories to the path
+for dir in "$HOME"/opt/*; do
+    if [ -d "$dir" ] && [ -x "$dir" ]; then
+        export PATH="$dir:$PATH"
+    fi
+done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export GCM_CREDENTIAL_STORE=gpg
@@ -92,7 +87,6 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 export NVM_DIR="$HOME/.nvm" # Node version manager nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-PATH=/var/lib/flatpak/app/io.dbeaver.DBeaverCommunity/current/active/files/dbeaver:/home/joeyv/opt/nvim/bin:/home/joeyv/bin:/usr/local/texlive/2023/bin/x86_64-linux:/home/joeyv/.cargo/env:/home/joeyv/.rustup:/home/joeyv/.cargo:/home/joeyv/.rustup/toolchains:/home/joeyv/.cargo/bin:/usr/local/cuda-11.8/bin:/home/joeyv/.nvm/versions/node/v22.2.0/bin:/var/lib/flatpak/app/io.dbeaver.DBeaverCommunity/current/active/files/dbeaver:/home/joeyv/opt/nvim/bin:/home/joeyv/bin:/usr/local/texlive/2023/bin/x86_64-linux:/home/joeyv/.cargo/env:/home/joeyv/.rustup:/home/joeyv/.cargo:/home/joeyv/.rustup/toolchains:/home/joeyv/.cargo/bin:/usr/local/cuda-11.8/bin:/home/joeyv/miniconda3/bin:/home/joeyv/miniconda3/condabin:/home/joeyv/.local/bin:/home/joeyv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/joeyv/.local/share/nvim/site/pack/packer/start/fzf/bin:~/.config/rofi/scripts
 
 # REAPER
 export PATH=~/opt/REAPER:$PATH
@@ -131,7 +125,14 @@ alias code-update='sudo chown -R joeyv:joevy /usr/share/code/resources/app/out'
 alias highlighter='~/opt/highlight-pointer -c orange -r 30 --auto-hide-highlight'
 alias fzf-vim='lvim $(fzf)'
 
+# vim mode
 bindkey -v
+
+# zoxide mapped to cd
 eval "$(zoxide init --cmd cd zsh)"
+
+# startship
 eval "$(starship init zsh)"
+
+# display fastfetch on shell launch
 fastfetch
