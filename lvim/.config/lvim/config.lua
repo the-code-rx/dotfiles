@@ -11,7 +11,6 @@ reload("user.keybindings")
 
 -- Pugins
 lvim.plugins = {
-  { "ftplugin/quarto.lua" },
   { "ThePrimeagen/vim-be-good" },
   { "ThePrimeagen/harpoon" },
   {
