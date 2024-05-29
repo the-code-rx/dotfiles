@@ -3,7 +3,7 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
--- Load options.lua
+-- Load options.lu
 reload("user.options")
 
 -- Load keybindings
@@ -133,12 +133,22 @@ local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { name = "black" },
   { name = "styler" },
+  {
+    command = "shfmt",
+    filetypes = { "sh" },
+    args = { "-i", "2", "-ci" } -- Adjust the arguments as needed
+  },
 }
 
 -- Enable pyright for Python auto-completion and ruff for linting
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   { name = "ruff" },
+  {
+    command = "shellcheck",
+    filetypes = { "sh" },
+    args = { "--severity", "style" }, -- Adjust the arguments as needed
+  },
 }
 lvim.lsp.installer.setup.ensure_installed = { "pyright" }
 
