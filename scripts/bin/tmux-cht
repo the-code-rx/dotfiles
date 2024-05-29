@@ -3,31 +3,34 @@
 #
 # These files can be found in the .dotfilles/tmux directory on GitHub. Note this is not a comprehensive
 # list of avaliabe cht.sh languages or commands, you can adapt these files to suit your own needs.
+
+color=$(tput setaf 4)
+reset_color=$(tput sgr0)
+declare -r color
+declare -r reset_color
+
 selected=$(cat ~/.tmux-cht-languages ~/.tmux-cht-command | fzf)
 if [[ -z $selected ]]; then
-    echo "No selection made. Exiting."
-    exit 0
+  echo "No selection made. Exiting."
+  exit 0
 fi
 
-read -p "Enter Your Query for $selected: " query
+selected=$(echo $selected | tr -d ' ')
+read -p "Enter Your Query for ${color}${selected}${reset_color}: " query
 
 if grep -qs "$selected" ~/.tmux-cht-languages; then
-    selected=$(echo $selected | tr -d ' ')
-    query=$(echo $query | tr -d ' ')
-    url="cht.sh/$selected/$query"
+  query=$(echo $query | tr -d ' ')
+  url="cht.sh/$selected/$query"
 else
-    url="cht.sh/$selected~$query"
+  url="cht.sh/$selected~$query"
 fi
-
 
 # Check curl response display and display response with batcat
 response=$(curl -s $url)
 if [[ -z $response ]]; then
-    echo "No response from curl. Exiting."
-    sleep 2 
-    exit 1
+  echo "No response from curl. Exiting."
+  sleep 2
+  exit 1
 else
-    tmux neww -n "cheat.sh" bash -c "curl -s $url & while [ : ]; do sleep 1; done | batcat"
-    fi
-
-
+  tmux neww -n "cheat.sh" bash -c "curl -s $url & while [ : ]; do sleep 1; done | batcat"
+fi
