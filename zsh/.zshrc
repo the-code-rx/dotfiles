@@ -3,9 +3,9 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# ----------- Conda Initialize -------------------
+# >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/joeyv/miniconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
+__conda_setup="$('/home/joeyv/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
@@ -16,6 +16,7 @@ else
     fi
 fi
 unset __conda_setup
+# <<< conda initialize <<<
 
 # ------------ CUDA ----------------------
 export PATH="/usr/local/cuda-11.8/bin:$PATH"
@@ -54,25 +55,14 @@ export INFOPATH="/usr/local/texlive/2023/texmf-dist/doc/info:$INFOPATH"
 export MANPATH="/usr/local/texlive/2023/texmf-dist/doc/man:$MANPATH"
 export TEXINPUTS=$TEXINPUTS:/usr/share/texmf/tex/latex/beamer/base/themes
 
-# TLDR manual PATH
+# -- TLDR manual PATH --
 export TLDR_CACHE_DIR="$HOME/.tldr"
 
-
-# Navi
+# -- Navi --
 export NAVI_CONFIG=~/.config/navi/config.yaml
 
-# # fzf Key Bindings
-if [[ ! -f /usr/share/doc/fzf/examples/completion.zsh ]]; then
-    sudo curl https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh -o /usr/share/doc/fzf/examples/completion.zsh
-    sudo curl https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -o /usr/share/doc/fzf/examples/key-bindings.zsh
-fi
-
-# fzf configuration
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+# -- fzf configuration --
 export FZF_DEFAULT_OPTS="--multi --preview 'batcat --color=always --style=header,grid --line-range :500 {}'"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 
 # Add all ~/opt sub-directories to the PATH
 for dir in "$HOME"/opt/*; do
@@ -146,3 +136,6 @@ eval "$(starship init zsh)"
 
 # Display fastfetch on shell launch
 fastfetch
+
+
+
