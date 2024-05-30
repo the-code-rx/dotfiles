@@ -1,3 +1,3 @@
 local set = vim.keymap.set
 
-set('n', '<leader>ot', ':ObsidianTemplate<CR>', { noremap = true, silent = true })
+set('n', '<C-t>o', ':ObsidianTemplate<CR>', { noremap = true, silent = true })

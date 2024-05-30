@@ -11,6 +11,7 @@ wk.mappings["S"] = {
   l = { "<cmd>lua require('persistence').load({ last = true })<cr>", kind.icons.clock .. " Restore last session" },
   Q = { "<cmd>lua require('persistence').stop()<cr>", kind.icons.exit .. " Quit without saving session" },
 }
+-- wk.mappings["o"]["t"] = { ':ObsidianTemplate<cr>', kind.symbols_outline.File .. " Obsidian Templates" }
 
 wk.mappings["l"]["t"] = { ":LvimToggleFormatOnSave<cr>", kind.symbols_outline.File .. " Toggle format-on-save" }
 wk.mappings["l"]["R"] = { ":LspRestart<cr>", kind.icons.exit .. " Restart" }
