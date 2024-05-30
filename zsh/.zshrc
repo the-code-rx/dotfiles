@@ -1,9 +1,11 @@
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # ----------- Conda Initialize -------------------
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/joeyv/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/joeyv/miniconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
@@ -20,25 +22,26 @@ export PATH="/usr/local/cuda-11.8/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda-11.8/lib64:$LD_LIBRARY_PATH"
 
 # --------------- Rust -------------------
-export PATH="/home/joeyv/.cargo/bin:$PATH"
-export PATH="/home/joeyv/.rustup/toolchains:$PATH"
-export PATH="/home/joeyv/.cargo:$PATH"
-export PATH="/home/joeyv/.rustup:$PATH"
-export PATH="/home/joeyv/.cargo/env:$PATH"
+export PATH="$HOME/.cargo/bin:$HOME/.rustup/toolchains:$HOME/.cargo:$HOME/.rustup:$HOME/.cargo/env:$PATH"
 
 # -------------- Golang ------------------
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
 
-# Startup  
+# Startup
 autoload -U compinit && compinit
-plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)
 
 # Setting Lunar vim as the default editor
 export EDITOR="lvim"
 
 # zsh-syntax-highlighting
 source /home/joeyv/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Plugins for oh-my-zsh
+plugins=(zsh-autosuggestions colored-man-pages)
+
+# Setting Lunar vim as the default editor
+export EDITOR="lvim"
 
 # Setting the PATH for the manual
 if [ -z "${MANPATH}" ]; then
@@ -47,20 +50,21 @@ fi
 
 # LaTex TexLive
 export PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
-INFOPATH="/usr/local/texlive/2023/texmf-dist/doc/info/{INFOPATH}"
-export MANPATH="/usr/local/texlive/2023/texmf-dist/doc/man:${MANPATH}"
+export INFOPATH="/usr/local/texlive/2023/texmf-dist/doc/info:$INFOPATH"
+export MANPATH="/usr/local/texlive/2023/texmf-dist/doc/man:$MANPATH"
 export TEXINPUTS=$TEXINPUTS:/usr/share/texmf/tex/latex/beamer/base/themes
 
 # TLDR manual PATH
 export TLDR_CACHE_DIR="$HOME/.tldr"
+
 
 # Navi
 export NAVI_CONFIG=~/.config/navi/config.yaml
 
 # # fzf Key Bindings
 if [[ ! -f /usr/share/doc/fzf/examples/completion.zsh ]]; then
-sudo curl https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh -o /usr/share/doc/fzf/examples/completion.zsh
-sudo curl https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -o /usr/share/doc/fzf/examples/key-bindings.zsh
+    sudo curl https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh -o /usr/share/doc/fzf/examples/completion.zsh
+    sudo curl https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -o /usr/share/doc/fzf/examples/key-bindings.zsh
 fi
 
 # fzf configuration
@@ -76,6 +80,8 @@ for dir in "$HOME"/opt/*; do
         export PATH="$dir:$PATH"
     fi
 done
+
+export PATH="/home/joeyv/opt/nvim/bin:$PATH"
 
 # GCM Credentials
 export GCM_CREDENTIAL_STORE=gpg
@@ -111,6 +117,10 @@ fzf_history() {
 # Loading oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+
+# zsh-syntax-highlighting
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # -------- Shell alias --------------
 alias gcolor3='flatpak run nl.hjdskes.gcolor3'
 alias ls='exa --icons -F -H --group-directories-first'
@@ -120,16 +130,16 @@ alias trash='trash-put'
 alias opentrash='nautilus trash://'
 alias mc='LD_PRELOAD=/usr/local/lib/libtrash.so.3.7.0 mc'
 alias hist='fzf_history'
-alias vim='lvim'
 alias code-update='sudo chown -R joeyv:root /usr/share/code/resources/app/out'
 alias highlight-pointer='~/opt/bin/highlight-pointer -c orange -r 10 --auto-hide-highlight'
 alias fzf-vim='lvim $(fzf)'
+alias nvim=lvim
 
 # Vim mode
 bindkey -v
 
 # Zoxide init and maping to cd
-eval "$(zoxide init --cmd cd zsh)"
+eval "$(zoxide init zsh)"
 
 # Startship command promt
 eval "$(starship init zsh)"
