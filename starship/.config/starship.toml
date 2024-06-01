@@ -75,7 +75,7 @@ Redhat = "󱄛 "
 RedHatEnterprise = "󱄛 "
 
 [directory]
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = "[ $path ]($style)"
 truncation_length = 3 
 truncation_symbol = "…/"
@@ -83,16 +83,16 @@ truncation_symbol = "…/"
 
 [aws]
 symbol = "󰸏 "
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [azure]
 symbol = " "
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 [c]
 symbol = " "
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [docker_context]
@@ -102,18 +102,18 @@ format = '[ $symbol $context ]($style)'
 
 [elixir]
 symbol = " "
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [elm]
 symbol = " "
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = " "
 style = "bg:#394260"
-format = '[[ $symbol $branch ](fg:#a9b1d6 bg:#394260)]($style)'
+format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
 
 [git_state]
 # disabled = true
@@ -144,73 +144,70 @@ format = "([[](bg:#394260 fg:#394260)$stashed$staged$modified$renamed$untrack
 
 [golang]
 symbol = ""
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [gcloud]
 symbol = "󱇶"
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [gradle]
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [haskell]
 symbol = ""
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = ""
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [julia]
 symbol = ""
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ""
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = "󰆥"
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [python]
 symbol = ""
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [rlang]
 symbol = ""
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [scala]
 symbol = ""
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 [quarto]
 symbol = "󰬘"
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
 
 
 [lua]
 symbol = ""
-style = "fg:#1a1b26 bg:#769ff0"
+style = "fg:#394260 bg:#769ff0"
 format = '[ $symbol ($version) ]($style)'
-
-
-
