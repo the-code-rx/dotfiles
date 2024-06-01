@@ -1,11 +1,22 @@
+-- Setup Formatters for Different Languages --
+
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { name = "black" },
   { name = "styler" },
   {
+    name = "prettier",
+    filetypes = { "css", "html", "markdown", "js", "yaml", "tex" }
+  },
+  {
     command = "shfmt",
     filetypes = { "sh" },
     args = { "-i", "2", "-ci" } -- Adjust the arguments as needed
+  },
+  {
+    command = "sql-formatter",
+    filetypes = { "sql" },
+    args = { "$FILENAME" },
   },
 }
 
@@ -26,7 +37,26 @@ linters.setup {
     args = { "--severity", "style" }, -- Adjust the arguments as needed
   },
 }
+
+lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+  return server ~= "sqlls"
+end, lvim.lsp.automatic_configuration.skipped_servers)
+
+require("lvim.lsp.manager").setup("sqlls", {
+  cmd = { "sql-language-server", "up", "--method", "stdio" },
+  filetypes = { "sql", "mysql" },
+  root_dir = function() return vim.loop.cwd() end,
+})
+
+-- LSP Ensure Installed --
 lvim.lsp.installer.setup.ensure_installed = { "pyright" }
 
--- Auto format on save
+-- -- Update CMP Sources
+table.insert(lvim.builtin.cmp.sources, { name = "vim-dadbod-completion" })
+
+-- Treesitter Ensured Installed --
+lvim.builtin.treesitter.ensure_installed = {
+  "python",
+}
+
 lvim.format_on_save.enabled = true
