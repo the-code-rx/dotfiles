@@ -138,7 +138,7 @@
   "terminal.integrated.fontSize": 17.0,
   "terminal.integrated.gpuAcceleration": "on",
   // File and Save Settings
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "off",
   "explorer.confirmDragAndDrop": false,
   "window.commandCenter": false,
   "quarto.render.renderOnSave": true,
@@ -1351,6 +1351,6 @@
   "codesnap.showWindowControls": false,
   "codesnap.backgroundColor": "#1a1b26",
   "latex-workshop.latex.external.build.args": ["-shell-escape"],
-  "workbench.activityBar.location": "hidden",
-  "window.density.editorTabHeight": "compact"
+  "window.density.editorTabHeight": "compact",
+  "workbench.activityBar.location": "hidden"
 }
