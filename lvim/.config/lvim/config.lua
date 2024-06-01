@@ -10,3 +10,6 @@ reload("ftplugin.quarto")
 reload("user.plugins")
 reload("user.lsp")
 reload("user.which-key")
+reload("user.lualine")
+reload("user.plugin-config")
+lvim.colorscheme = "tokyonight-night"
