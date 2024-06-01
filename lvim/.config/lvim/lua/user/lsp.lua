@@ -53,7 +53,8 @@ lvim.lsp.installer.setup.ensure_installed = { "pyright" }
 
 -- -- Update CMP Sources
 table.insert(lvim.builtin.cmp.sources, { name = "vim-dadbod-completion" })
-
+table.insert(lvim.builtin.cmp.sources, { name = "otter" })
+table.insert(lvim.builtin.cmp.sources, { name = "cmp_nvim_r" })
 -- Treesitter Ensured Installed --
 lvim.builtin.treesitter.ensure_installed = {
   "python",
