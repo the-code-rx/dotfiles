@@ -71,31 +71,36 @@ for dir in "$HOME"/opt/*; do
     fi
 done
 
-export PATH="/home/joeyv/opt/nvim/bin:$PATH"
+# -- Add ~/opt to PATH -- 
+export PATH="$HOME/opt:$PATH"
 
-# GCM Credentials
+# -- GCM Credentials --
 export GCM_CREDENTIAL_STORE=gpg
 export GCM_CREDENTIAL_STORE=cache
 
-# DBeaaver PATH variable
+# -- DBeaaver PATH variable --
 export PATH="/var/lib/flatpak/app/io.dbeaver.DBeaverCommunity/current/active/files/dbeaver:$PATH"
 
-# zsh Functions
+# -- zsh Functions --
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-# Node version manager nvm
+# -- Node version manager nvm --
 export NVM_DIR="$HOME/.nvm" 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# -- NPM - Node Package Manager golbal install PATH and node version PATH -- 
+export PATH=~/.npm-global/bin:$PATH
+export PATH="$NVM_DIR/versions/node/$(nvm current)/bin:$PATH"
+
 # ---------- History Configuration ----------------
-# Number of commands to remember in the command history for the current session
+# -- Number of commands to remember in the command history for the current session --
 HISTSIZE=10000
 
-# Number of commands to save in the history file
+# -- Number of commands to save in the history file --
 SAVEHIST=20000
 
-# fzf History search with execution
+# -- fzf History search with execution --
 fzf_history() {
     local selected_command
     selected_command=$(history | fzf +s --tac | awk '{$1=""; print substr($0,2)}')
@@ -104,11 +109,10 @@ fzf_history() {
     fi
 }
 
-# Loading oh-my-zsh
+# -- Loading oh-my-zsh --
 source $ZSH/oh-my-zsh.sh
 
-
-# zsh-syntax-highlighting
+# -- zsh-syntax-highlighting --
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # -------- Shell alias --------------
@@ -125,16 +129,16 @@ alias highlight-pointer='~/opt/bin/highlight-pointer -c orange -r 10 --auto-hide
 alias fzf-vim='lvim $(fzf)'
 alias nvim=lvim
 
-# Vim mode
+# -- Vim mode for the terminal --
 bindkey -v
 
-# Zoxide init and maping to cd
+# -- Zoxide init and maping to cd --
 eval "$(zoxide init zsh)"
 
-# Startship command promt
+# -- Startship command promt --
 eval "$(starship init zsh)"
 
-# Display fastfetch on shell launch
+# -- Display fastfetch on shell launch --
 fastfetch
 
 
