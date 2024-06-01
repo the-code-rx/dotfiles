@@ -1,1 +1,5 @@
 require("plugin-config.oil")
+require("plugin-config.noice")
+require("plugin-config.swenv")
+require("plugin-config.gotopreview")
+require("plugin-config.colorizer")
