@@ -3,6 +3,9 @@ vim.opt.relativenumber = true -- Set relative line numbers
 vim.ignorecae = true          -- Ingnore  case in search
 vim.smartcase = true          -- Case-sensitive search when search term contains uppercase character
 
+-- Colorschemes --
+lvim.colorscheme = "tokyonight-night"
+vim.g.rout_follow_colorscheme = 1
 
 -- Markdown preview browser
 vim.g.mkdp_browser = "google-chrome"
@@ -14,7 +17,6 @@ vim.g.mkdp_theme = "dark"
 vim.g.mkdp_theme = 1
 vim.g.mkdp_combine_preview_auto_refresh = 1
 vim.g.mkdp_page_title = '「${name}」'
-
 
 -- Obsidan Settings
 vim.opt.conceallevel = 2
