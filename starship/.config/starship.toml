@@ -16,12 +16,12 @@ $gradle\
 $haskell\
 $java\
 $julia\
-$nodejs\
 $nim\
 $rust\
 $scala\
 $rlang\
 $aws\
+$nodejs\
 $gcloud\
 $azure\
 $quarto\
@@ -51,11 +51,11 @@ vimcmd_symbol = "[](bold green)"
 
 [os]
 style = "fg:#ff9e64 bg:#394260"
-disabled = false # Disabled by default
+disabled = false                # Disabled by default
 
 [os.symbols]
-Windows = "󰍲 " 
-Ubuntu = "󰕈 " 
+Windows = "󰍲 "
+Ubuntu = "󰕈 "
 SUSE = " "
 Raspbian = "󰐿 "
 Mint = "󰣭 "
@@ -77,7 +77,7 @@ RedHatEnterprise = "󱄛 "
 [directory]
 style = "fg:#394260 bg:#769ff0"
 format = "[ $path ]($style)"
-truncation_length = 3 
+truncation_length = 3
 truncation_symbol = "…/"
 
 
