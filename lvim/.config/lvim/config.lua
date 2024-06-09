@@ -12,5 +12,3 @@ reload("user.lsp")
 reload("user.which-key")
 reload("user.lualine")
 reload("user.plugin-config")
-lvim.colorscheme = "tokyonight-night"
-vim.g.rout_follow_colorscheme = 1
