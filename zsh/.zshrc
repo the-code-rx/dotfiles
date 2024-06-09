@@ -100,6 +100,9 @@ HISTSIZE=10000
 # -- Number of commands to save in the history file --
 SAVEHIST=20000
 
+# -- fzf --
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # -- fzf History search with execution --
 fzf_history() {
     local selected_command
@@ -126,8 +129,7 @@ alias mc='LD_PRELOAD=/usr/local/lib/libtrash.so.3.7.0 mc'
 alias hist='fzf_history'
 alias code-update='sudo chown -R joeyv:root /usr/share/code/resources/app/out'
 alias highlight-pointer='~/opt/bin/highlight-pointer -c orange -r 10 --auto-hide-highlight'
-alias fzf-vim='lvim $(fzf)'
-alias nvim=lvim
+alias fzf-vim='vim $(fzf)'
 
 # -- Vim mode for the terminal --
 bindkey -v
@@ -140,6 +142,7 @@ eval "$(starship init zsh)"
 
 # -- Display fastfetch on shell launch --
 fastfetch
+
 
 
 
