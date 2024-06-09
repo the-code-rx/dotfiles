@@ -1,4 +1,4 @@
--- Setup Formatters for Different Languages --
+--Setup Formatters for Different Languages --
 
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
@@ -54,7 +54,8 @@ lvim.lsp.installer.setup.ensure_installed = { "pyright" }
 -- -- Update CMP Sources
 table.insert(lvim.builtin.cmp.sources, { name = "vim-dadbod-completion" })
 table.insert(lvim.builtin.cmp.sources, { name = "otter" })
-table.insert(lvim.builtin.cmp.sources, { name = "cmp_nvim_r" })
+table.insert(lvim.builtin.cmp.sources, { name = "lua-latex-symbols", option = { cache = true } })
+
 -- Treesitter Ensured Installed --
 lvim.builtin.treesitter.ensure_installed = {
   "python",
