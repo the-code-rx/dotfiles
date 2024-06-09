@@ -1,3 +1,2 @@
-if vim.g.vscode then
-  require "user.vscode"
-end
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
