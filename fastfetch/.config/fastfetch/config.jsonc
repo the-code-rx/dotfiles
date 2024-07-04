@@ -6,7 +6,7 @@
       "left": 3
     },
     "type": "small",
-    "source": "Linux",
+   "source": "Linux"
   },
   "display": {
     "separator": "  | ",
@@ -24,17 +24,17 @@
     "separator",
     {
       "type": "os",
-      "key": "",
+      "key": "",
       "keyColor": "red"
     },
     {
       "type": "kernel",
-      "key": "",
+      "key": "",
       "keyColor": "yellow"
     },
     {
       "type": "uptime",
-      "key": "",
+      "key": "󰾨",
       "keyColor": "green"
     },
     {
@@ -54,12 +54,12 @@
     },
     {
       "type": "cpu",
-      "key": "",
+      "key": "",
       "keyColor": "green"
     },
     {
       "type": "memory",
-      "key": "",
+      "key": "",
       "keyColor": "cyan"
     },
     "break"

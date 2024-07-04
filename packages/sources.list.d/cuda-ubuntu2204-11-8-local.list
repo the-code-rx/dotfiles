@@ -1,0 +1,1 @@
+deb [signed-by=/usr/share/keyrings/cuda-D95DBBE2-keyring.gpg] file:///var/cuda-repo-ubuntu2204-11-8-local /

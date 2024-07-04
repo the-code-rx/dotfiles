@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    lazy = true,
     dependencies = {
       "jmbuhr/cmp-pandoc-references",
     },

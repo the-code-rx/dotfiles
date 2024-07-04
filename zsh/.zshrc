@@ -1,7 +1,23 @@
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+# Priortize System Defaults ---  
+export PATH=/usr/bin:/bin:/usr/local/bin:$HOME/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+
+# Environment Variables for zsh 
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
+export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
+export ZDOTDIR="$HOME"
+export HISTFILE="$ZDOTDIR/.zsh_history" 
+
+source $HOME/.antidote/antidote.zsh
+
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load
+#
+# Autoload functions you might want to use with antidote.
+ZFUNCDIR=${ZFUNCDIR:-$ZDOTDIR/.zsh_functions}
+fpath=($ZFUNCDIR $fpath)
+autoload -Uz $fpath[1]/*(.:t)
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -18,9 +34,19 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Set environment variables for locating headers, libraries, and pkg-config files
+# in the Miniconda installation. This includes directories for various development
+# dependencies such as OpenSSL, zlib, and other libraries installed through Miniconda.
+export CFLAGS="-I/home/joeyv/miniconda3/include"
+export LDFLAGS="-L/home/joeyv/miniconda3/lib"
+export PKG_CONFIG_PATH="/home/joeyv/miniconda3/lib/pkgconfig"
+
 # ------------ CUDA ----------------------
 export PATH="/usr/local/cuda-11.8/bin:$PATH"
-export LD_LIBRARY_PATH="/usr/local/cuda-11.8/lib64:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda-11.8/lib64"
+
+# -------Library Paths for C -------------
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib:/usr/lib64:/usr/local/lib:/lib"
 
 # --------------- Rust -------------------
 export PATH="$HOME/.cargo/bin:$HOME/.rustup/toolchains:$HOME/.cargo:$HOME/.rustup:$HOME/.cargo/env:$PATH"
@@ -30,19 +56,19 @@ export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
 # Startup
-autoload -U compinit && compinit
+# autoload -U compinit && compinit
 
-# Setting Lunar vim as the default editor
-export EDITOR="lvim"
+# Setting NeoVim as the default editor
+export EDITOR='nvim'
+export VISUAL='nvim'
+export MANPAGER='nvim +Man!'
 
 # zsh-syntax-highlighting
-source /home/joeyv/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /home/joeyv/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Plugins for oh-my-zsh
-plugins=(zsh-autosuggestions colored-man-pages)
+# plugins=(zsh-nvm zsh-autosuggestions colored-man-pages)
 
-# Setting Lunar vim as the default editor
-export EDITOR="lvim"
 
 # Setting the PATH for the manual
 if [ -z "${MANPATH}" ]; then
@@ -85,56 +111,83 @@ export PATH="/var/lib/flatpak/app/io.dbeaver.DBeaverCommunity/current/active/fil
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # -- Node version manager nvm --
-export NVM_DIR="$HOME/.nvm" 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm" 
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
 
 # -- NPM - Node Package Manager golbal install PATH and node version PATH -- 
-export PATH=~/.npm-global/bin:$PATH
-export PATH="$NVM_DIR/versions/node/$(nvm current)/bin:$PATH"
+# export PATH=~/.npm-global/bin:$PATH
+# export PATH="$NVM_DIR/versions/node/$(nvm current)/bin:$PATH"
 
 # ---------- History Configuration ----------------
 # -- Number of commands to remember in the command history for the current session --
-HISTSIZE=10000
+export HISTSIZE=100000
 
 # -- Number of commands to save in the history file --
-SAVEHIST=20000
+export SAVEHIST=100000
 
 # -- fzf --
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# -- fzf History search with execution --
-fzf_history() {
-    local selected_command
-    selected_command=$(history | fzf +s --tac | awk '{$1=""; print substr($0,2)}')
-    if [ -n "$selected_command" ]; then
-        eval "$selected_command"
-    fi
-}
-
 # -- Loading oh-my-zsh --
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # -- zsh-syntax-highlighting --
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # -------- Shell alias --------------
 alias gcolor3='flatpak run nl.hjdskes.gcolor3'
-alias ls='exa --icons -F -H --group-directories-first'
-alias tree='exa -T --icons'
+alias ls='eza --icons -F -H --group-directories-first --git'
+alias tree='eza -T --icons'
 alias cat='batcat'
+alias glow='glow -p -w 80'
 alias trash='trash-put'
 alias opentrash='nautilus trash://'
 alias mc='LD_PRELOAD=/usr/local/lib/libtrash.so.3.7.0 mc'
-alias hist='fzf_history'
 alias code-update='sudo chown -R joeyv:root /usr/share/code/resources/app/out'
 alias highlight-pointer='~/opt/bin/highlight-pointer -c orange -r 10 --auto-hide-highlight'
 alias fzf-vim='vim $(fzf)'
+alias firefox-dev='~/.local/share/umake/web/firefox-dev/firefox'
+alias grep='grep -i -n -C 3 --color=auto'
+alias zshrc='nvim ~/.dotfiles/zsh/.zshrc'
+
+
+# Go up directories
+alias '..'='cd ..'
+alias '...'='cd ../..'
+alias '....'='cd ../../..'
+alias '.....'='cd ../../../..'
+alias '......'='cd ../../../../..'
+
+# Go to root and home
+alias /='cd /'
+alias ~='cd ~'
+
+# Better mkdir & cd 
+mkcd() { 
+  mkdir -p "$1"&& cd "$1"
+}
+
+# Quick access to specific directories
+alias home='cd ~'
+alias docs='cd ~/Documents'
+alias dwn='cd ~/Downloads'
+alias ds='cd ~/data_science/'
+alias dev='cd ~/web_dev/' # Assuming you have a dev directory
+alias dotnvim='cd ~/.dotfiles/nvim/.config/nvim/lua/plugins/'
+alias .dot='cd ~/.dotfiles'
+
+# Enhanced directory listing
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
 
 # -- Vim mode for the terminal --
 bindkey -v
 
-# -- Zoxide init and maping to cd --
+# -- Zoxide init for zsh --
 eval "$(zoxide init zsh)"
 
 # -- Startship command promt --
@@ -142,7 +195,3 @@ eval "$(starship init zsh)"
 
 # -- Display fastfetch on shell launch --
 fastfetch
-
-
-
-

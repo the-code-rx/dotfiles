@@ -1,0 +1,23 @@
+{
+  "name": "snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": ["html"],
+        "path": "./snippets/bs5-snippets.json"
+      },
+      {
+          "language": "python",
+          "path": "./snippets/flask-snippets.json"
+      },
+      {
+
+          "language": "html",
+          "path": "./snippets/jinja-snippets.json"
+      }
+    ]
+}
+}

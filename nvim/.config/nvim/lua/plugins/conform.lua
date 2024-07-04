@@ -1,26 +1,40 @@
 return {
   {
     "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
+    optional = true,
+    opts = function(_, opts)
+      opts.formatters_by_ft = {
         htmldjango = { "djlint" },
         html = { "prettierd", "prettier" },
+        css = { "prettierd", "prettier" },
+        scss = { "prettierd", "prettier" },
+        json = { "prettierd", "prettier" },
         python = { "isort", "black" },
         javascript = { { "prettierd", "prettier" } },
         r = { "styler" },
-        sql = { "sql-formatter" },
+        sql = { "sqlfluff" },
         tex = { { "prettierd", "prettier" } },
         markdown = { { "prettierd", "prettier" } },
-        function(_, opts)
-          opts.formatters = {
-            shfmt = { prepend_args = { "-i", "4" } },
-          }
-          return opts
-        end,
-      },
-      format = {
+        sh = { "shfmt" },
+        lua = { "stylua" },
+        go = { "goimports", "gofumpt" },
+      }
+      -- Modify specific formatter options
+      opts.formatters.shftm = {
+        ["prepend_args"] = { "-i", "4" },
+      }
+      --     opts.formatters.sqlfluff = {
+      --       args = { "format", "--dialect=ansi", "-" },
+      -- }
+      --     for _, ft in ipairs(sql_ft) do
+      --       opts.formatters_by_ft[ft] = opts.formatters_by_ft[ft] or {}
+      --       table.insert(opts.formatters_by_ft[ft], "sqlfluff")
+      --     end
+
+      opts.format = {
         timeout_ms = 30000,
-      },
-    },
+      }
+      return opts
+    end,
   },
 }

@@ -2,6 +2,7 @@ return {
   { -- requires plugins in lua/plugins/treesitter.lua and lua/plugins/lsp.lua
     -- for complete functionality (language features)
     "quarto-dev/quarto-nvim",
+    lazy = true,
     ft = { "quarto" },
     dev = false,
     opts = {

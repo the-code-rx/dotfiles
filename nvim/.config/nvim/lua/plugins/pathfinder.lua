@@ -1,3 +1,0 @@
-return {
-  "danth/pathfinder.vim"
-}

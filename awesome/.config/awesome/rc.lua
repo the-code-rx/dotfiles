@@ -105,7 +105,7 @@ local altkey = "Mod1"
 local terminal = "alacritty"
 local vi_focus = true -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
-local editor = "lvim"
+local editor = "nvim"
 local browser = "google-chrome"
 
 awful.util.terminal = terminal
@@ -118,7 +118,7 @@ awful.util.tagnames = {
 	"|6 PDF 󰈦 ",
 	"|7 Zeal 󰬡 ",
 	"|8 OBS  ",
-	"|9 DAW 󰒢",
+	"|9 ATL  ",
 }
 
 awful.layout.layouts = {
@@ -502,27 +502,27 @@ globalkeys = mytable.join(
 		os.execute("xbacklight -dec 10")
 	end, { description = "-10%", group = "hotkeys" }),
 
-	-- ALSA volume control
-	awful.key({ altkey }, "Up", function()
-		os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
-		beautiful.volume.update()
-	end, { description = "volume up", group = "hotkeys" }),
-	awful.key({ altkey }, "Down", function()
-		os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
-		beautiful.volume.update()
-	end, { description = "volume down", group = "hotkeys" }),
-	awful.key({ altkey }, "m", function()
-		os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
-		beautiful.volume.update()
-	end, { description = "toggle mute", group = "hotkeys" }),
-	awful.key({ altkey, "Control" }, "m", function()
-		os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
-		beautiful.volume.update()
-	end, { description = "volume 100%", group = "hotkeys" }),
-	awful.key({ altkey, "Control" }, "0", function()
-		os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
-		beautiful.volume.update()
-	end, { description = "volume 0%", group = "hotkeys" }),
+	-- -- ALSA volume control
+	-- awful.key({ altkey }, "Up", function()
+	-- 	os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
+	-- 	beautiful.volume.update()
+	-- end, { description = "volume up", group = "hotkeys" }),
+	-- awful.key({ altkey }, "Down", function()
+	-- 	os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
+	-- 	beautiful.volume.update()
+	-- end, { description = "volume down", group = "hotkeys" }),
+	-- awful.key({ altkey }, "m", function()
+	-- 	os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+	-- 	beautiful.volume.update()
+	-- end, { description = "toggle mute", group = "hotkeys" }),
+	-- awful.key({ altkey, "Control" }, "m", function()
+	-- 	os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
+	-- 	beautiful.volume.update()
+	-- end, { description = "volume 100%", group = "hotkeys" }),
+	-- awful.key({ altkey, "Control" }, "0", function()
+	-- 	os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
+	-- 	beautiful.volume.update()
+	-- end, { description = "volume 0%", group = "hotkeys" }),
 
 	-- MPD control
 	awful.key({ altkey, "Control" }, "Up", function()
@@ -938,7 +938,7 @@ tag.connect_signal("property::selected", backham)
 
 -- }}}
 -- Autostart
-awful.spawn.with_shell("xcompmgr -c -f -n &")
+awful.spawn.with_shell("xcompmgr -c -n &")
 awful.spawn.with_shell("nitrogen --restore &")
 awful.spawn.with_shell("~/.screenlayout/ml_box_displays.sh")
 awful.spawn.with_shell("alacritty")

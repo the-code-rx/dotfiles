@@ -9,28 +9,28 @@ reset_color=$(tput sgr0)
 declare -r color
 declare -r reset_color
 
-selected=$(cat ~/.tmux-cht-languages ~/.tmux-cht-command | fzf)
+selected=$(cat ~/.tmux-cht-languages ~/.tmux-cht-command | fzf --preview-window=right:0%)
 if [[ -z $selected ]]; then
-	echo "No selection made. Exiting."
-	exit 0
+  echo "No selection made. Exiting."
+  exit 0
 fi
 
 selected=$(echo $selected | tr -d ' ')
 read -p "Enter Your Query for ${color}${selected}${reset_color}: " query
 
 if grep -qs "$selected" ~/.tmux-cht-languages; then
-	query=$(echo $query | tr -d ' ')
-	url="cht.sh/$selected/$query"
+  query=$(echo $query | tr -d ' ')
+  url="cht.sh/$selected/$query"
 else
-	url="cht.sh/$selected~$query"
+  url="cht.sh/$selected~$query"
 fi
 
 # Check curl response display and display response with batcat
 response=$(curl -s $url)
 if [[ -z $response ]]; then
-	echo "No response from curl. Exiting."
-	sleep 2
-	exit 1
+  echo "No response from curl. Exiting."
+  sleep 2
+  exit 1
 else
-	tmux neww -n "cheat.sh" bash -c "curl -s $url & while [ : ]; do sleep 1; done | batcat"
+  tmux neww -n "cheat.sh" bash -c "curl -s $url & while [ : ]; do sleep 1; done | batcat"
 fi

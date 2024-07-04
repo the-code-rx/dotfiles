@@ -19,7 +19,7 @@ return {
       workspaces = {
         {
           name = "personal",
-          path = "~/DS/DS_Vault",
+          path = "~/data_science/DS_Vault",
         },
         -- {
         -- name = "work",

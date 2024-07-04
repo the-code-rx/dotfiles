@@ -14,6 +14,7 @@ return {
   },
   { -- preview equations
     "jbyuki/nabla.nvim",
+    lazy = true,
     keys = {
       { "<leader>ct", ':lua require("nabla").popup()<CR>', desc = "Toggle Math Equations" },
     },

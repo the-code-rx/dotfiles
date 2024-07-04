@@ -1,24 +1,26 @@
 return {
   { -- directly open ipynb files as quarto docuements
     -- and convert back behind the scenes
-    'GCBallesteros/jupytext.nvim',
+    "GCBallesteros/jupytext.nvim",
+    lazy = true,
     opts = {
       custom_language_formatting = {
         python = {
-          extension = 'qmd',
-          style = 'quarto',
-          force_ft = 'quarto',
+          extension = "qmd",
+          style = "quarto",
+          force_ft = "quarto",
         },
         r = {
-          extension = 'qmd',
-          style = 'quarto',
-          force_ft = 'quarto',
+          extension = "qmd",
+          style = "quarto",
+          force_ft = "quarto",
         },
       },
     },
   },
   {
     "benlubas/molten-nvim",
+    lazy = true,
     enabled = false,
     build = ":UpdateRemotePlugins",
     init = function()
@@ -27,7 +29,7 @@ return {
       vim.g.molten_auto_open_output = false
     end,
     keys = {
-      { "<leader>ci", ":MoltenInit<cr>",           desc = "Jupyter Init" },
+      { "<leader>ci", ":MoltenInit<cr>", desc = "Jupyter Init" },
       {
         "<leader>mv",
         ":<C-u>MoltenEvaluateVisual<cr>",

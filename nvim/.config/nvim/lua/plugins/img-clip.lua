@@ -1,6 +1,7 @@
 return {
   { -- paste an image from the clipboard or drag-and-drop
     "HakonHarnes/img-clip.nvim",
+    lazy = true,
     event = "BufEnter",
     ft = { "markdown", "quarto", "latex" },
     opts = {

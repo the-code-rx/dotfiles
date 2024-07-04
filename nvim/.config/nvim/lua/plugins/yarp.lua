@@ -1,3 +1,6 @@
 return {
-  { "roxma/nvim-yarp" },
+  {
+    "roxma/nvim-yarp",
+    lazy = true,
+  },
 }
