@@ -152,6 +152,7 @@ alias fzf-vim='vim $(fzf)'
 alias firefox-dev='~/.local/share/umake/web/firefox-dev/firefox'
 alias grep='grep -i -n -C 3 --color=auto'
 alias zshrc='nvim ~/.dotfiles/zsh/.zshrc'
+alias yz='yazi'
 
 
 # Go up directories
@@ -176,7 +177,7 @@ alias docs='cd ~/Documents'
 alias dwn='cd ~/Downloads'
 alias ds='cd ~/data_science/'
 alias dev='cd ~/web_dev/' # Assuming you have a dev directory
-alias dotnvim='cd ~/.dotfiles/nvim/.config/nvim/lua/plugins/'
+alias .nvim='cd ~/.dotfiles/nvim/.config/nvim/lua/plugins/'
 alias .dot='cd ~/.dotfiles'
 
 # Enhanced directory listing
