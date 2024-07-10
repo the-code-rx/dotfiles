@@ -12,5 +12,4 @@ return {
   vim.keymap.set("n", "<leader>bj", ":BufferLinePick<CR>", { desc = "Jump Buffer" }),
   vim.keymap.set("n", "<leader>cp", ":!npx stylelint *.css --fix<CR>", { desc = "Sort CSS Properties" }),
   vim.keymap.set("n", "<leader>P", ":LiveServerStart<CR>", { desc = "Live Server" }),
-  vim.keymap.set("n", "<leader>e", "<Cmd>Lf<CR>"),
 }
