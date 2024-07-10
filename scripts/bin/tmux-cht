@@ -9,7 +9,7 @@ reset_color=$(tput sgr0)
 declare -r color
 declare -r reset_color
 
-selected=$(cat ~/.tmux-cht-languages ~/.tmux-cht-command | fzf --preview-window=right:0%)
+selected=$(cat ~/.tmux-cht-languages ~/.tmux-cht-command | ~/.fzf/bin/fzf-tmux -w 25% --preview-window=right:0%)
 if [[ -z $selected ]]; then
   echo "No selection made. Exiting."
   exit 0
