@@ -13,7 +13,7 @@ return {
         javascript = { { "prettierd", "prettier" } },
         r = { "styler" },
         sql = { "sqlfluff" },
-        tex = { { "prettierd", "prettier" } },
+        tex = { "latexindent" },
         markdown = { { "prettierd", "prettier" } },
         sh = { "shfmt" },
         lua = { "stylua" },
