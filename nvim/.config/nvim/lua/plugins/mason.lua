@@ -22,6 +22,7 @@ return {
         "r-languageserver",
         "ruff-lsp",
         "emmet-language-server",
+        "htmx-lsp",
         -- Formatters
         "prettier",
         "prettierd",
@@ -34,6 +35,7 @@ return {
         "markdown-toc",
         "markdownlint",
         "sql-formatter",
+        "latexindent",
         -- Linters
         "ansible-lint",
         "cmakelint",
