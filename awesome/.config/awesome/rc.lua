@@ -24,7 +24,15 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 local mytable = awful.util.table or gears.table -- 4.{0,1} compatibility
 
--- }}}
+-- Define notification styles
+naughty.config.defaults.font = "Monospace 6"
+naughty.config.defaults.bg = "#bb9af7"
+naughty.config.defaults.fg = "#1a1b26"
+naughty.config.defaults.timeout = 40
+naughty.config.defaults.position = "top_middle"
+naughty.config.defaults.margin = 8
+naughty.config.defaults.border_width = 4
+naughty.config.defaults.border_color = "#414868"
 
 -- {{{ Error handling
 
@@ -102,7 +110,7 @@ local themes = {
 local chosen_theme = themes[7]
 local modkey = "Mod4"
 local altkey = "Mod1"
-local terminal = "alacritty"
+local terminal = "kitty"
 local vi_focus = true -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = "nvim"
@@ -169,13 +177,13 @@ awful.util.taglist_buttons = mytable.join(
 		if client.focus then
 			client.focus:toggle_tag(t)
 		end
-	end),
-	awful.button({}, 4, function(t)
-		awful.tag.viewnext(t.screen)
-	end),
-	awful.button({}, 5, function(t)
-		awful.tag.viewprev(t.screen)
 	end)
+	-- awful.button({}, 4, function(t)
+	-- 	awful.tag.viewnext(t.screen)
+	-- end),
+	-- awful.button({}, 5, function(t)
+	-- 	awful.tag.viewprev(t.screen)
+	-- end)
 )
 
 awful.util.tasklist_buttons = mytable.join(
@@ -804,7 +812,7 @@ awful.rules.rules = {
 	},
 
 	{
-		rule = { class = "Alacritty" },
+		rule = { class = "kitty" },
 		properties = { screen = 2, tag = "1 TMUX  " },
 	},
 
@@ -941,4 +949,4 @@ tag.connect_signal("property::selected", backham)
 awful.spawn.with_shell("xcompmgr -c -n &")
 awful.spawn.with_shell("nitrogen --restore &")
 awful.spawn.with_shell("~/.screenlayout/ml_box_displays.sh")
-awful.spawn.with_shell("alacritty")
+awful.spawn.with_shell("kitty")
