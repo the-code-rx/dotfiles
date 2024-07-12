@@ -153,6 +153,7 @@ alias firefox-dev='~/.local/share/umake/web/firefox-dev/firefox'
 alias grep='grep -i -n -C 3 --color=auto'
 alias zshrc='nvim ~/.dotfiles/zsh/.zshrc'
 alias yz='yazi'
+alias rust-link='export PATH=$(echo $PATH | tr ':' '\n' | grep -v 'miniconda' | tr '\n' ':')'
 
 
 # Go up directories
@@ -184,9 +185,6 @@ alias .dot='cd ~/.dotfiles'
 alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
-
-# -- Vim mode for the terminal --
-bindkey -v
 
 # -- Zoxide init for zsh --
 eval "$(zoxide init zsh)"
