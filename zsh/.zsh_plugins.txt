@@ -1,0 +1,6 @@
+zsh-users/zsh-autosuggestions
+zdharma-continuum/fast-syntax-highlighting kind:defer
+zsh-users/zsh-completions
+hlissner/zsh-autopair
+lukechilds/zsh-nvm
+jeffreytse/zsh-vi-mode
