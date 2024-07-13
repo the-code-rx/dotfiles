@@ -6,7 +6,7 @@ if [[ ${1} == "-build-cache" ]]; then
   ls $zeal_path | sed 's/\.docset//' | awk '{ print $1 }' >~/.fzf-zeal/docset.txt
 fi
 
-language=$(cat ~/.fzf-zeal/docset.txt | ~/.fzf/bin/fzf-tmux -p 75% --preview-window=right:0% --layout=reverse --prompt="Select a Language Docset: ")
+language=$(cat ~/.fzf-zeal/docset.txt | ~/.fzf/bin/fzf --tmux 75% --preview-window=right:0% --layout=reverse --prompt="Select a Language Docset: ")
 if [[ -z $language ]]; then
   echo "No selection made. Exiting."
   exit 0
@@ -39,7 +39,7 @@ view_docs() {
 fzf_live_search() {
   local docset_dir=~/.local/share/Zeal/Zeal/docsets/${language}.docset
   cd "${docset_dir}" || exit 1
-  ~/.fzf/bin/fzf-tmux -p 75% \
+  ~/.fzf/bin/fzf --tmux 75% \
     --bind "change:reload(rg --color=always --no-messages --smart-case {q} || true)" \
     --ansi \
     --delimiter : \
