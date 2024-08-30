@@ -10,7 +10,7 @@ return {
   vim.keymap.set("n", "<leader>oT", ":ObsidianTags<CR>", { desc = "Obsidian Tags" }),
   vim.keymap.set("n", "<leader>ob", ":ObsidianBacklinks<CR>", { desc = "Obsidian Backlinks" }),
   vim.keymap.set("n", "<leader>bj", ":BufferLinePick<CR>", { desc = "Jump Buffer" }),
-  vim.keymap.set("n", "<leader>cp", ":!npx stylelint *.css --fix<CR>", { desc = "Sort CSS Properties" }),
+  vim.keymap.set("n", "<leader>cp", ":!npx stylelint '*{.css,.scss}' --fix<CR>", { desc = "Sort CSS Properties" }),
   vim.keymap.set("n", "<leader>P", ":LiveServerStart<CR>", { desc = "Live Server" }),
   vim.keymap.set("n", "<leader>fy", ":Telescope neoclip plus<CR>", { desc = "Yank Register" }),
 }
