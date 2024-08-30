@@ -1,7 +1,7 @@
 if not vim.g.vscode then
   return {}
 end
-print("Hello, World!")
+
 local enabled = {
   "dial.nvim",
   "flit.nvim",
@@ -32,7 +32,7 @@ end
 function _G.vscodeCommentary(...)
   local args = { ... }
   if #args == 0 then
-    vim.api.nvim_set_option("operatorfunc", "v:lua.vscodeCommentary")
+    vim.go.operatorfunc = "v:lua.vscodeCommentary"
     return "g@"
   end
 
@@ -45,43 +45,98 @@ function _G.vscodeCommentary(...)
 
   vim.fn.VSCodeCallRange("editor.action.commentLine", line1, line2, 0)
 end
--- Add some vscode specific keymaps
+
+-- LazyVim to VSCode specific keymaps
 vim.api.nvim_create_autocmd("User", {
   pattern = "LazyVimKeymaps",
   callback = function()
+    -- Coding search, symbol, and definition functionality
     vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
     vim.keymap.set("n", "<leader>/", [[<cmd>call VSCodeNotify('workbench.action.findInFiles')<cr>]])
     vim.keymap.set("n", "<leader>ss", [[<cmd>call VSCodeNotify('workbench.action.gotoSymbol')<cr>]])
-    -- Buffer keymaps --
+    vim.keymap.set("n", "<leader>cr", [[<cmd>call VSCodeNotify('editor.action.rename')<cr>]])
+    vim.keymap.set("n", "gr", [[<cmd>call VSCodeNotify('editor.action.goToReferences')<cr>]])
+
+    -- Buffer/Editor keymaps
     vim.keymap.set("n", "<leader>bd", [[<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<cr>]])
     vim.keymap.set("n", "<S>l", [[<cmd>call VSCodeNotify('workbench.action.nextEditor')<cr>]])
     vim.keymap.set("n", "<S>h", [[<cmd>call VSCodeNotify('workbench.action.previousEditor')<cr>]])
-    vim.keymap.set("n", "be", [[<cmd>call VSCodeNotify('workbench.action.showAllEditors')<cr>]])
-    -- Toggle File Explorer --
-    vim.keymap.set("n", "<leader>e", [[<cmd>call VSCodeNotify('workbench.action.toggleSidebarVisibility')<cr>]])
-    -- Commands --
-    vim.keymap.set("n", "<leader>sC", [[<cmd>call VSCodeNotify('workbench.action.showCommands')<cr>]])
-    -- Git --
-    vim.keymap.set("n", "<leader>ge", [[<cmd>call VSCodeNotify('workbench.view.scm')<cr>]])
-    -- Harpoon emulation via Bookmarks extension--
-    vim.keymap.set("n", "<leader>h", [[<cmd>call VSCodeNotify('bookmarks.listFromAllFiles')<cr>]])
-    -- Key mappings for better navigation
-    vim.api.nvim_set_keymap("n", "<C-j>", ":call VSCodeNotify('workbench.action.navigateDown')<CR>", { silent = true })
-    vim.api.nvim_set_keymap("x", "<C-j>", ":call VSCodeNotify('workbench.action.navigateDown')<CR>", { silent = true })
-    vim.api.nvim_set_keymap("n", "<C-k>", ":call VSCodeNotify('workbench.action.navigateUp')<CR>", { silent = true })
-    vim.api.nvim_set_keymap("x", "<C-k>", ":call VSCodeNotify('workbench.action.navigateUp')<CR>", { silent = true })
-    vim.api.nvim_set_keymap("n", "<C-h>", ":call VSCodeNotify('workbench.action.navigateLeft')<CR>", { silent = true })
-    vim.api.nvim_set_keymap("x", "<C-h>", ":call VSCodeNotify('workbench.action.navigateLeft')<CR>", { silent = true })
-    vim.api.nvim_set_keymap("n", "<C-l>", ":call VSCodeNotify('workbench.action.navigateRight')<CR>", { silent = true })
-    vim.api.nvim_set_keymap("x", "<C-l>", ":call VSCodeNotify('workbench.action.navigateRight')<CR>", { silent = true })
+    vim.keymap.set("n", "<leader>be", [[<cmd>call VSCodeNotify('workbench.action.showAllEditors')<cr>]])
+    vim.keymap.set("n", "<leader>,", [[<cmd>call VSCodeNotify('workbench.action.showAllEditors')<cr>]])
+    vim.keymap.set("n", "<leader>fb", [[<cmd>call VSCodeNotify('workbench.action.showAllEditors')<cr>]])
 
-    vim.api.nvim_set_keymap("n", "gr", ":call VSCodeNotify('editor.action.goToReferences')<CR>", { silent = true })
-    -- Commentary mappings
-    vim.api.nvim_set_keymap("x", "gc", "<Plug>VSCodeCommentary", {})
-    vim.api.nvim_set_keymap("n", "gc", "<Plug>VSCodeCommentary", {})
-    vim.api.nvim_set_keymap("o", "gc", "<Plug>VSCodeCommentary", {})
-    vim.api.nvim_set_keymap("n", "gcc", "<Plug>VSCodeCommentaryLine", {})
+    -- Window management
+    vim.keymap.set("n", "<leader>qq", [[<cmd>call VSCodeNotify('workbench.action.closeWindow')<cr>]])
+    vim.keymap.set("n", "<leader>w>", [[<cmd>call VSCodeNotify('workbench.action.increaseViewWidth')<cr>]])
+    vim.keymap.set("n", "<leader>w<", [[<cmd>call VSCodeNotify('workbench.action.decreaseViewWidth')<cr>]])
+    vim.keymap.set("n", "<leader>wd", [[<cmd>call VSCodeNotify('workbench.action.closeEditorsAndGroup')<cr>]])
+    vim.keymap.set("n", "<leader>wq", [[<cmd>call VSCodeNotify('workbench.action.closeEditorsAndGroup')<cr>]])
+    vim.keymap.set("n", "<leader>-", [[<cmd>call VSCodeNotify('workbench.action.splitEditorDown')<cr>]])
+    vim.keymap.set("n", "<leader>|", [[<cmd>call VSCodeNotify('workbench.action.splitEditorRight')<cr>]])
+    vim.keymap.set("n", "<leader>cwm", [[<cmd>call VSCodeNotify('workbench.action.toggleMaximizeEditorGroup')<cr>]])
+
+    -- Toggle VScode UI
+    vim.keymap.set("n", "<leader>e", [[<cmd>call VSCodeNotify('workbench.action.toggleSidebarVisibility')<cr>]])
+    vim.keymap.set("n", "<leader>ub", [[<cmd>call VSCodeNotify('workbench.action.toggleActivityBarVisibility')<cr>]])
+    vim.keymap.set("n", "<C-/>", [[<cmd>call VSCodeNotify('workbench.action.togglePanel')<cr>]])
+    vim.keymap.set("n", "<leader>ud", [[<cmd>call VSCodeNotify('errorLens.toggleInlineMessage')<cr>]])
+    vim.keymap.set("n", "<leader>cs", function()
+      vim.fn.VSCodeNotify("outline.expand")
+    end)
+
+    -- Search VSCode commands --
+    vim.keymap.set("n", "<leader>sC", [[<cmd>call VSCodeNotify('workbench.action.showCommands')<cr>]])
+
+    -- Git source control via Git Graph by "mhutchie" VSCode extension
+    vim.keymap.set("n", "<leader>ge", [[<cmd>call VSCodeNotify('workbench.view.scm')<cr>]])
+    vim.keymap.set("n", "<leader>gs", [[<cmd>call VSCodeNotify('workbench.view.scm')<cr>]])
+    vim.keymap.set("n", "<leader>gc", function()
+      vim.fn.VSCodeNotify("git-graph.view")
+      vim.fn.VSCodeNotify("workbench.view.scm")
+    end)
+    vim.keymap.set("n", "<leader>gl", function()
+      vim.fn.VSCodeNotify("git-graph.view")
+      vim.fn.VSCodeNotify("workbench.view.scm")
+    end)
+    vim.keymap.set("n", "<leader>gf", [[<cmd>call VSCodeNotify('git-graph.openFile')<cr>]])
+    vim.keymap.set("n", "<leader>gv", [[<cmd>call VSCodeNotify('git.commit.view.showFolderView')<cr>]])
+
+    -- Todo functionality via Todo Tree by "Gruntfuggly"
+    vim.keymap.set("n", "<leader>st", function()
+      vim.fn.VSCodeNotify("todo-tree-view.focus")
+      vim.fn.VSCodeNotify("todo-tree.expand")
+    end)
+    vim.keymap.set("n", "[t", [[<cmd>call VSCodeNotify('todo-tree.goToNext')<cr>]])
+    vim.keymap.set("n", "]t", [[<cmd>call VSCodeNotify('todo-tree.goToPrevious')<cr>]])
+
+    -- Harpoon via VSCode Harpoon by "tobias-z" VSCode extension
+    vim.keymap.set("n", "<leader>H", [[<cmd>call VSCodeNotify('vscode-harpoon.addEditor')<cr>]])
+    vim.keymap.set("n", "<leader>h", [[<cmd>call VSCodeNotify('vscode-harpoon.editorQuickPick')<cr>]])
+    vim.keymap.set("n", "<leader>1", [[<cmd>call VSCodeNotify('vscode-harpoon.gotoEditor1')<cr>]])
+    vim.keymap.set("n", "<leader>2", [[<cmd>call VSCodeNotify('vscode-harpoon.gotoEditor2')<cr>]])
+    vim.keymap.set("n", "<leader>3", [[<cmd>call VSCodeNotify('vscode-harpoon.gotoEditor3')<cr>]])
+    vim.keymap.set("n", "<leader>4", [[<cmd>call VSCodeNotify('vscode-harpoon.gotoEditor4')<cr>]])
+    vim.keymap.set("n", "<leader>5", [[<cmd>call VSCodeNotify('vscode-harpoon.gotoEditor5')<cr>]])
+
+    -- hjkl navigation kemaps
+    vim.keymap.set("n", "<C-j>", [[<cmd>call VSCodeNotify('workbench.action.navigateDown')<cr>]])
+    vim.keymap.set("x", "<C-j>", [[<cmd>call VSCodeNotify('workbench.action.navigateDown')<cr>]])
+    vim.keymap.set("n", "<C-k>", [[<cmd>call VSCodeNotify('workbench.action.navigateUp')<cr>]])
+    vim.keymap.set("x", "<C-k>", [[<cmd>call VSCodeNotify('workbench.action.navigateUp')<cr>]])
+    vim.keymap.set("n", "<C-h>", [[<cmd>call VSCodeNotify('workbench.action.navigateLeft')<cr>]])
+    vim.keymap.set("x", "<C-h>", [[<cmd>call VSCodeNotify('workbench.action.navigateLeft')<cr>]])
+    vim.keymap.set("n", "<C-l>", [[<cmd>call VSCodeNotify('workbench.action.navigateRight')<cr>]])
+    vim.keymap.set("x", "<C-l>", [[<cmd>call VSCodeNotify('workbench.action.navigateRight')<cr>]])
+
+    -- Comment kemaps
+    vim.keymap.set("x", "gc", "<Plug>VSCodeCommentary")
+    vim.keymap.set("n", "gc", "<Plug>VSCodeCommentary")
+    vim.keymap.set("o", "gc", "<Plug>VSCodeCommentary")
+    vim.keymap.set("n", "gcc", "<Plug>VSCodeCommentaryLine")
   end,
+
+  -- Debug keymaps
+  vim.keymap.set("n", "<leader>du", [[<cmd>call VSCodeNotify('workbench.view.debug')<cr>]]),
 })
 
 return {
