@@ -3,7 +3,7 @@ return {
     "stevearc/conform.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.formatters_by_ft = {
+      opts.default_format_opts = {
         htmldjango = { "djlint" },
         html = { "prettierd", "prettier" },
         css = { "prettierd", "prettier" },
@@ -31,7 +31,7 @@ return {
       --       table.insert(opts.formatters_by_ft[ft], "sqlfluff")
       --     end
 
-      opts.format = {
+      opts.default_format_opts = {
         timeout_ms = 30000,
       }
       return opts
