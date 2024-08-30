@@ -4,3 +4,4 @@ zsh-users/zsh-completions
 hlissner/zsh-autopair
 lukechilds/zsh-nvm
 jeffreytse/zsh-vi-mode
+atuinsh/atuin
