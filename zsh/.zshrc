@@ -37,16 +37,16 @@ unset __conda_setup
 # Set environment variables for locating headers, libraries, and pkg-config files
 # in the Miniconda installation. This includes directories for various development
 # dependencies such as OpenSSL, zlib, and other libraries installed through Miniconda.
-export CFLAGS="-I/home/joeyv/miniconda3/include"
-export LDFLAGS="-L/home/joeyv/miniconda3/lib"
-export PKG_CONFIG_PATH="/home/joeyv/miniconda3/lib/pkgconfig"
+# export CFLAGS="-I/home/joeyv/miniconda3/include"
+# export LDFLAGS="-L/home/joeyv/miniconda3/lib"
+# export PKG_CONFIG_PATH="/home/joeyv/miniconda3/lib/pkgconfig"
 
 # ------------ CUDA ----------------------
 export PATH="/usr/local/cuda-11.8/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda-11.8/lib64"
 
 # -------Library Paths for C -------------
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib:/usr/lib64:/usr/local/lib:/lib"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib:/usr/lib64:/usr/local/lib:/lib:/usr/lib/x86_64-linux-gnu"
 
 # --------------- Rust -------------------
 export PATH="$HOME/.cargo/bin:$HOME/.rustup/toolchains:$HOME/.cargo:$HOME/.rustup:$HOME/.cargo/env:$PATH"
@@ -142,7 +142,7 @@ alias gcolor3='flatpak run nl.hjdskes.gcolor3'
 alias ls='eza --icons -F -H --group-directories-first --git'
 alias tree='eza -T --icons'
 alias cat='batcat'
-alias glow='glow -p -w 80'
+alias glow='glow -p'
 alias trash='trash-put'
 alias opentrash='nautilus trash://'
 alias mc='LD_PRELOAD=/usr/local/lib/libtrash.so.3.7.0 mc'
@@ -153,8 +153,6 @@ alias firefox-dev='~/.local/share/umake/web/firefox-dev/firefox'
 alias grep='grep -i -n -C 3 --color=auto'
 alias zshrc='nvim ~/.dotfiles/zsh/.zshrc'
 alias yz='yazi'
-alias rust-link='export PATH=$(echo $PATH | tr ':' '\n' | grep -v 'miniconda' | tr '\n' ':')'
-
 
 # Go up directories
 alias '..'='cd ..'
@@ -173,9 +171,9 @@ mkcd() {
 }
 
 # Quick access to specific directories
-alias home='cd ~'
 alias docs='cd ~/Documents'
 alias dwn='cd ~/Downloads'
+alias vault='cd ~/data_science/DS_Vault/'
 alias ds='cd ~/data_science/'
 alias dev='cd ~/web_dev/' # Assuming you have a dev directory
 alias .nvim='cd ~/.dotfiles/nvim/.config/nvim/lua/plugins/'
@@ -194,3 +192,10 @@ eval "$(starship init zsh)"
 
 # -- Display fastfetch on shell launch --
 fastfetch
+
+. "$HOME/.atuin/bin/env"
+
+export ATUIN_NOBIND="true"
+eval "$(atuin init zsh)"
+
+bindkey '^r' atuin-search
